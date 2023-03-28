@@ -91,7 +91,7 @@ void* AtenderCliente(void* socket)
 				sprintf(respuesta, "2/%d/SI", numForm);
 			else
 				sprintf(respuesta, "2/%d/NO", numForm);
-		else //quiere saber si es alto
+		else if (codigo == 3) //quiere saber si es alto
 		{
 			p = strtok(NULL, "/");
 			float altura = atof(p); //atof porque es un numero real
@@ -102,7 +102,7 @@ void* AtenderCliente(void* socket)
 		}
 
 
-		else if (codigo == 3) //pide saber si su nombre es palindromo
+		else if (codigo == 4) //pide saber si su nombre es palindromo
 			if (esPalindromo(nombre)) {
 				printf("%s es un palindromo.\n", nombre);
 			}
@@ -110,7 +110,7 @@ void* AtenderCliente(void* socket)
 				printf("%s no es un palindromo.\n", nombre);
 			}
 
-		else if (codigo == 4) //pide que devuelva su nombre en mayuscula
+		else if (codigo == 5) //pide que devuelva su nombre en mayuscula
 		{
 			int longitud = strlen(nombre);
 			for (int i = 0; i < longitud; i++) {
