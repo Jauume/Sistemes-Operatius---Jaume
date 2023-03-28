@@ -112,6 +112,8 @@ int main(int argc, char *argv[])
 	
 	pthread_t thread;
 	i=0;
+	
+	//Hago un bucle infinito para que sea concurrente
 	for (;;){
 		printf ("Escuchando\n");
 		
@@ -122,7 +124,6 @@ int main(int argc, char *argv[])
 		//sock_conn es el socket que usaremos para este cliente
 		
 		// Crear thead y decirle lo que tiene que hacer
-		
 		pthread_create (&thread, NULL, AtenderCliente,&sockets[i]);
 		i=i+1;
 		
