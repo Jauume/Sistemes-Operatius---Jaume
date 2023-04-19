@@ -82,11 +82,10 @@ void* AtenderCliente(void* socket)
 		if (codigo == 0) //petici?n de desconexi?n
 			terminar = 1;
 
-		else if (codigo == 1) //piden la longitd del nombre
+		else if (codigo == 1) //Dime la longitud del nombre
 			sprintf(respuesta, "1/%d/%d", numForm, strlen(nombre));
 
-		else if (codigo == 2)
-			// quieren saber si el nombre es bonito
+		else if (codigo == 2) //Dime si mi nombre es bonito
 			if ((nombre[0] == 'M') || (nombre[0] == 'S'))
 				sprintf(respuesta, "2/%d/SI", numForm);
 			else
@@ -118,6 +117,20 @@ void* AtenderCliente(void* socket)
 			}
 
 		}
+
+
+		else if (codigo == 6) //Pide el numero de los servicios realizados 
+		{
+			sprintf(respuesta, "%d", contador);
+
+		}
+
+
+
+
+
+
+
 
 		if (codigo != 0)
 		{

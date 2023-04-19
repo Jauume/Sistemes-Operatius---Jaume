@@ -24,10 +24,10 @@ namespace WindowsFormsApplication1
 
         private void button2_Click(object sender, EventArgs e)
         {
-       
+
             if (Longitud.Checked)
             {
-                string mensaje = "1/"+nForm+"/" + nombre.Text;
+                string mensaje = "1/" + nForm + "/" + nombre.Text;
                 // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
@@ -39,19 +39,21 @@ namespace WindowsFormsApplication1
                 // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
-
-             
-
             }
-            else
+
+            else if (Altura.Checked)
             {
                 // Enviamos nombre y altura
                 string mensaje = "3/" + nForm + "/" + nombre.Text + "/" + alturaBox.Text;
                 // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
-
-              
+            }
+            else { //No hay ninguna casilla seleccionada
+                string mensaje = "No se ha seleccionado nada";
+                // Enviamos al servidor el nombre tecleado
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
             }
              
         
@@ -79,6 +81,20 @@ namespace WindowsFormsApplication1
             MessageBox.Show(mensaje);
 
         }
-        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //Pedir el numero de servicios realizados
+            string mensaje = "6/";
+            
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            //Recibimos la respuesta del servidor
+            byte[] msg2 = new byte[80];
+            server.Receive(msg2);
+            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+            label1.Text = mensaje; //ponlo en el label del formulario
+        }
     }
 }
